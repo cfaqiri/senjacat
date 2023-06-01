@@ -22,10 +22,21 @@
           </li>
         <% end %>
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, style: "text-decoration: none;" do %>
-              <span class="nav-link">Log out</span>
-            <% end %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="<%= edit_user_registration_path %>">Account</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, style: "text-decoration: none;" do %>
+                  <span class="dropdown-item">Log out</span>
+                <% end %>
+              </li>
+            </ul>
           </li>
         <% end %>
       </ul>
